@@ -88,6 +88,41 @@ struct node* reverse2(struct node *h)
 	return a;
 }
 
+struct node* delete_first(struct node *h)
+{
+	struct node *t;
+
+	if(h == NULL)
+		return h;
+
+	t = h;
+	h = h->next;
+	free(t);
+
+	return h;
+}
+
+struct node* delete_last(struct node *h)
+{
+	struct node *t = h;
+
+	if(t == NULL)
+		return t;
+
+	if(t->next == NULL) {
+		free(t);
+		return NULL;
+	}
+
+	while(t->next->next != NULL) {
+		t = t->next;
+	}
+
+	t->next = t->next->next;
+	free(t->next);
+
+	return h;
+}
 
 int
 main(int argc, char *argv[])
@@ -104,6 +139,12 @@ main(int argc, char *argv[])
 	print(h);
 
 	h = reverse2(h);
+	print(h);
+
+        h = delete_first(h);
+	print(h);
+
+        h = delete_last(h);
 	print(h);
 
 	return 0;
