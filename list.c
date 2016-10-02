@@ -1,5 +1,5 @@
 /*
- * listrev.c - reverse a dynamic linked list
+ * list.c - linked list operations
  */
 #include <stdio.h>
 #include <stdlib.h>
