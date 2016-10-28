@@ -24,12 +24,27 @@ struct node* newnode(int data)
 /*
  * add item to list
  */
-struct node* append(struct node* h, int data)
+struct node* insert_first(struct node* h, int data)
+{
+	struct node* d = newnode(data);
+
+	if(h == NULL)
+		return d;
+
+	d->next = h;
+
+	return d;
+}
+
+/*
+ * add item to list
+ */
+struct node* insert_last(struct node* h, int data)
 {
 	if(h == NULL)
 		return newnode(data);
 
-	h->next = append(h->next, data);
+	h->next = insert_last(h->next, data);
 
 	return h;
 }
@@ -131,7 +146,7 @@ main(int argc, char *argv[])
 
 	struct node *h = NULL;
 	for(i = 0; i < 10; i++)
-		h = append(h, i);
+		h = insert_last(h, i);
 
 	print(h);
 
